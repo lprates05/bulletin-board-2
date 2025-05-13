@@ -15,6 +15,7 @@ task({ :sample_data => :environment }) do
     user.email = "#{username}@example.com"
     user.password = "password"
     user.save
+  end
   
   5.times do
     board = Board.new
@@ -34,6 +35,8 @@ task({ :sample_data => :environment }) do
     end
   end
 
+  puts "There are now #{User.count} rows in the users table."
   puts "There are now #{Board.count} rows in the boards table."
   puts "There are now #{Post.count} rows in the posts table."
+  
 end
