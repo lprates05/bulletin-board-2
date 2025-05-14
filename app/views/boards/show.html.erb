@@ -44,7 +44,7 @@
       Add post
     </button>
   </form>
-  
+
 <% else  %>
  <p> Must be <a href ="/users/sign_in">signed in</a> to add a new board. </p>
 <% end  %>
@@ -55,6 +55,7 @@
 
 <table border="1">
   <tr>
+    <th></th>
     <th>Title</th>
     <th>Body</th>
     <th>Posted on</th>
@@ -63,6 +64,11 @@
 
   <% @active_posts.each do |a_post| %>
     <tr>
+      <td>
+        <% if current_user && a_post.user_id == current_user.id %>
+          <%= link_to "Delete post", "/delete_post/#{a_post.id}", method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </td>
       <td><%= a_post.title %></td>
       <td><%= a_post.body %></td>
       <td><%= a_post.created_at.strftime("%b %e, %Y") %></td>
